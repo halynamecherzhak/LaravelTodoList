@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 
 class TasksController extends Controller
 {
@@ -65,7 +67,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){}
+    public function show($id)
+    {
+        $task = DB::table('tasks')->select('name','description')->get();
+
+        return view('tasks.show')->with('task', $task);
+    }
 
     /**
      * Show the form for editing the specified resource.
