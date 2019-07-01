@@ -64,12 +64,11 @@ class TasksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $task = DB::table('tasks')->select('name','description')->get();
+        $task = DB::table('tasks')->select('name','description')->find($id);
 
         return view('tasks.show')->with('task', $task);
     }
