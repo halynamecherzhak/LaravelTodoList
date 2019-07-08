@@ -13,8 +13,14 @@
 
 Route::resource('task', 'TasksController');
 
-//Route::get('/', 'TaskController@index');
+//Route::get('/', 'TasksController@index');
 
 Route::get('/', function (){
     return redirect()->route('task.index');
 });
+
+//method that cleanly encapsulates all the login and register routes
+
+Auth::routes();
+
+Route::get('/home', 'TasksController@index')->name('home');
